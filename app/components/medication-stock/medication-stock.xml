@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StackLayout class="bg-white rounded-2xl shadow-sm p-6 mb-4">
+    <GridLayout columns="*, auto" class="mb-4">
+        <Label col="0" text="Stock des médicaments" class="text-xl font-bold text-gray-900" />
+        <Label col="1" text="+" class="text-xl text-blue-500" />
+    </GridLayout>
+    
+    <ListView items="{{ medicationList }}" class="list-group">
+        <ListView.itemTemplate>
+            <GridLayout columns="auto, *, auto" rows="auto, auto" class="p-2 border-b border-gray-100">
+                <Label col="0" rowSpan="2" text="💊" class="text-xl mr-3" />
+                
+                <StackLayout col="1" row="0">
+                    <Label text="{{ name }}" class="text-base font-medium text-gray-800" />
+                    <Label text="{{ dosage + ' - ' + frequency }}" class="text-sm text-gray-500" />
+                </StackLayout>
+                
+                <StackLayout col="1" row="1" orientation="horizontal">
+                    <Button text="-" tap="{{ $parent.adjustStock(id, -1) }}" 
+                            class="w-8 h-8 bg-gray-100 rounded-full text-center" />
+                    <Label text="{{ stock + ' ' + unit }}" class="{{ $parent.getStockStatus(stock, alertThreshold) }} mx-2" />
+                    <Button text="+" tap="{{ $parent.adjustStock(id, 1) }}" 
+                            class="w-8 h-8 bg-gray-100 rounded-full text-center" />
+                </StackLayout>
+                
+                <Label col="2" rowSpan="2" 
+                       text="{{ stock <= alertThreshold ? '⚠️' : '' }}" 
+                       class="text-xl" />
+            </GridLayout>
+        </ListView.itemTemplate>
+    </ListView>
+</StackLayout>

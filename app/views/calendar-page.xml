@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" 
+      xmlns:bottomNav="~/components/bottom-nav"
+      navigatingTo="onNavigatingTo">
+    <GridLayout rows="*, auto">
+        <!-- Contenu principal -->
+        <GridLayout row="0" rows="auto, *" class="page-content">
+            <!-- En-tête -->
+            <StackLayout row="0" class="bg-white border-b border-gray-200">
+                <GridLayout rows="auto, auto" class="p-6">
+                    <GridLayout row="0" columns="*, auto">
+                        <Label col="0" text="📅 Calendrier" class="text-3xl font-bold text-gray-900" />
+                        <Button col="1" text="+" tap="{{ onAddEventTap }}" 
+                                class="text-xl w-10 h-10 bg-blue-500 text-white rounded-full" />
+                    </GridLayout>
+                    <Label row="1" text="Gérez vos rendez-vous et symptômes" class="text-lg text-gray-600" />
+                </GridLayout>
+            </StackLayout>
+
+            <!-- Liste des événements -->
+            <ListView row="1" items="{{ groupedEvents }}" class="list-group bg-gray-50">
+                <ListView.itemTemplate>
+                    <StackLayout class="p-4">
+                        <Label text="{{ title }}" class="text-lg font-bold text-gray-800 mb-2 ml-2" />
+                        <Repeater items="{{ events }}">
+                            <Repeater.itemTemplate>
+                                <GridLayout columns="auto, *, auto" class="bg-white p-4 rounded-lg shadow-sm mb-2">
+                                    <Label col="0" class="mr-4 text-2xl" 
+                                           text="{{ type === 'appointment' ? '👨‍⚕️' : type === 'symptom' ? '🤒' : '⏰' }}" />
+                                    <StackLayout col="1">
+                                        <Label text="{{ title }}" class="text-base font-bold text-gray-900" />
+                                        <Label text="{{ formattedDateTime }}" class="text-sm text-blue-600 mb-1" />
+                                        
+                                        <StackLayout visibility="{{ type === 'appointment' ? 'visible' : 'collapsed' }}">
+                                            <Label text="{{ '📍 ' + location }}" class="text-sm text-gray-600"
+                                                   visibility="{{ location ? 'visible' : 'collapsed' }}" />
+                                            <Label text="{{ '👨‍⚕️ ' + doctor }}" class="text-sm text-gray-600"
+                                                   visibility="{{ doctor ? 'visible' : 'collapsed' }}" />
+                                        </StackLayout>
+                                        
+                                        <StackLayout visibility="{{ type === 'symptom' ? 'visible' : 'collapsed' }}">
+                                            <Label text="{{ 'Intensité: ' + severity + '/5' }}" class="text-sm text-gray-600" />
+                                            <Label text="{{ 'Durée: ' + duration }}" class="text-sm text-gray-600"
+                                                   visibility="{{ duration ? 'visible' : 'collapsed' }}" />
+                                        </StackLayout>
+                                        
+                                        <Label text="{{ description }}" class="text-sm text-gray-600 mt-1"
+                                               visibility="{{ description ? 'visible' : 'collapsed' }}"
+                                               textWrap="true" />
+                                    </StackLayout>
+                                    <Button col="2" text="×" tap="{{ $parents['ListView'].onDeleteEvent }}" 
+                                            class="text-red-500 font-bold text-xl w-8 h-8" />
+                                </GridLayout>
+                            </Repeater.itemTemplate>
+                        </Repeater>
+                    </StackLayout>
+                </ListView.itemTemplate>
+            </ListView>
+
+            <!-- Modal d'ajout d'événement -->
+            <GridLayout visibility="{{ isModalVisible ? 'visible' : 'collapsed' }}"
+                        class="bg-white" row="0" rowSpan="2">
+                <ScrollView>
+                    <StackLayout class="form-container" bindingContext="{{ modalContext }}">
+                        <Label text="Nouvel événement" class="form-header" />
+
+                        <!-- Type d'événement -->
+                        <StackLayout class="form-group">
+                            <Label text="Type d'événement" class="form-label" />
+                            <SegmentedBar selectedIndex="{{ eventTypeIndex }}" items="{{ eventTypes }}" />
+                        </StackLayout>
+
+                        <!-- Champs communs -->
+                        <StackLayout class="form-group">
+                            <Label text="Titre" class="form-label" />
+                            <TextField text="{{ title }}" hint="Titre de l'événement" />
+                        </StackLayout>
+
+                        <StackLayout class="form-group">
+                            <Label text="Date" class="form-label" />
+                            <DatePicker date="{{ date }}" />
+                        </StackLayout>
+
+                        <StackLayout class="form-group" visibility="{{ !isSymptom ? 'visible' : 'collapsed' }}">
+                            <Label text="Heure" class="form-label" />
+                            <TimePicker time="{{ time }}" />
+                        </StackLayout>
+
+                        <StackLayout class="form-group">
+                            <Label text="Description" class="form-label" />
+                            <TextView text="{{ description }}" hint="Description" height="80" />
+                        </StackLayout>
+
+                        <!-- Champs spécifiques aux rendez-vous -->
+                        <StackLayout visibility="{{ isAppointment ? 'visible' : 'collapsed' }}">
+                            <StackLayout class="form-group">
+                                <Label text="Lieu" class="form-label" />
+                                <TextField text="{{ location }}" hint="Lieu du rendez-vous" />
+                            </StackLayout>
+
+                            <StackLayout class="form-group">
+                                <Label text="Docteur" class="form-label" />
+                                <TextField text="{{ doctor }}" hint="Nom du docteur" />
+                            </StackLayout>
+                        </StackLayout>
+
+                        <!-- Champs spécifiques aux symptômes -->
+                        <StackLayout visibility="{{ isSymptom ? 'visible' : 'collapsed' }}">
+                            <StackLayout class="form-group">
+                                <Label text="Intensité" class="form-label" />
+                                <Slider value="{{ severity }}" minValue="1" maxValue="5" />
+                            </StackLayout>
+
+                            <StackLayout class="form-group">
+                                <Label text="Durée" class="form-label" />
+                                <TextField text="{{ duration }}" hint="Durée du symptôme" />
+                            </StackLayout>
+                        </StackLayout>
+
+                        <GridLayout columns="*, *" class="form-buttons">
+                            <Button col="0" text="Annuler" tap="{{ onCancel }}" class="btn-cancel m-1" />
+                            <Button col="1" text="Enregistrer" tap="{{ onSave }}" class="btn-save m-1" />
+                        </GridLayout>
+                    </StackLayout>
+                </ScrollView>
+            </GridLayout>
+        </GridLayout>
+
+        <!-- Barre de navigation -->
+        <bottomNav:bottom-nav row="1" />
+    </GridLayout>
+</Page>

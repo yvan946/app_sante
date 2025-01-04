@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" 
+      xmlns:bottomNav="~/components/bottom-nav"
+      navigatingTo="onNavigatingTo"
+      actionBarHidden="true">
+    <GridLayout rows="*, auto">
+        <StackLayout row="0" class="bg-gray-50">
+            <!-- En-tête -->
+            <StackLayout class="p-6 bg-white border-b border-gray-200 safe-area">
+                <Label text="📄 Documents" class="text-3xl font-bold text-gray-900 mb-2" />
+                <Label text="Gérez vos documents importants" class="text-lg text-gray-600" />
+            </StackLayout>
+
+            <!-- Contenu -->
+            <ScrollView>
+                <StackLayout class="p-6">
+                    <!-- Catégories -->
+                    <GridLayout rows="auto, auto, auto" columns="*, *" class="mb-4">
+                        <GridLayout col="0" class="bg-white rounded-xl shadow-sm p-4 m-1" 
+                                  tap="{{ onCategoryTap }}" documentType="prescription" documentTitle="Ordonnances">
+                            <StackLayout>
+                                <Label text="📋" class="text-2xl text-center mb-2" />
+                                <Label text="Ordonnances" class="text-center text-gray-800" />
+                            </StackLayout>
+                        </GridLayout>
+                        
+                        <GridLayout col="1" class="bg-white rounded-xl shadow-sm p-4 m-1"
+                                  tap="{{ onCategoryTap }}" documentType="treatment" documentTitle="Traitements">
+                            <StackLayout>
+                                <Label text="💊" class="text-2xl text-center mb-2" />
+                                <Label text="Traitements" class="text-center text-gray-800" />
+                            </StackLayout>
+                        </GridLayout>
+                        
+                        <GridLayout row="1" col="0" class="bg-white rounded-xl shadow-sm p-4 m-1"
+                                  tap="{{ onCategoryTap }}" documentType="hospitalization" documentTitle="Hospitalisations">
+                            <StackLayout>
+                                <Label text="🏥" class="text-2xl text-center mb-2" />
+                                <Label text="Hospitalisations" class="text-center text-gray-800" />
+                            </StackLayout>
+                        </GridLayout>
+                        
+                        <GridLayout row="1" col="1" class="bg-white rounded-xl shadow-sm p-4 m-1"
+                                  tap="{{ onCategoryTap }}" documentType="analysis" documentTitle="Analyses">
+                            <StackLayout>
+                                <Label text="📊" class="text-2xl text-center mb-2" />
+                                <Label text="Analyses" class="text-center text-gray-800" />
+                            </StackLayout>
+                        </GridLayout>
+
+                        <GridLayout row="2" colSpan="2" class="bg-white rounded-xl shadow-sm p-4 m-1"
+                                  tap="{{ onCategoryTap }}" documentType="other" documentTitle="Autres">
+                            <StackLayout>
+                                <Label text="📁" class="text-2xl text-center mb-2" />
+                                <Label text="Autres" class="text-center text-gray-800" />
+                            </StackLayout>
+                        </GridLayout>
+                    </GridLayout>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+        <bottomNav:bottom-nav row="1" />
+    </GridLayout>
+</Page>

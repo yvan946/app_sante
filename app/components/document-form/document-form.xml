@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GridLayout class="bg-white p-6 rounded-lg" rows="auto, auto, auto, auto, auto">
+    <Label row="0" text="Nouveau document" class="text-xl font-bold mb-4" />
+    
+    <TextField row="1" hint="Titre" text="{{ title }}" 
+              class="input mb-2 p-4 border rounded" />
+    
+    <TextView row="2" hint="Description (optionnelle)" text="{{ description }}" 
+              class="input mb-4 p-4 border rounded" height="80" />
+    
+    <GridLayout row="3" columns="*" class="mb-4">
+        <Button text="{{ hasFile ? '📷 Changer la photo' : '📷 Prendre une photo' }}" 
+                tap="{{ onTakePicture }}"
+                class="bg-blue-500 text-white p-4 rounded" />
+    </GridLayout>
+    
+    <GridLayout row="4" columns="*, *" class="mt-4">
+        <Button col="0" text="Annuler" tap="{{ onCancel }}" 
+                class="m-1 p-4 bg-gray-500 text-white rounded" />
+        <Button col="1" text="Enregistrer" tap="{{ onSave }}" 
+                class="m-1 p-4 bg-blue-500 text-white rounded" 
+                isEnabled="{{ hasFile }}" />
+    </GridLayout>
+</GridLayout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" 
+      xmlns:bottomNav="~/components/bottom-nav"
+      xmlns:medicationStock="~/components/medication-stock"
+      navigatingTo="onNavigatingTo">
+    <GridLayout rows="*, auto">
+        <StackLayout row="0" class="bg-gray-50">
+            <!-- En-tête -->
+            <StackLayout class="p-6 bg-white border-b border-gray-200">
+                <Label text="💊 Traitements" class="text-3xl font-bold text-gray-900 mb-2" />
+                <Label text="Gérez vos médicaments" class="text-lg text-gray-600" />
+            </StackLayout>
+
+            <!-- Contenu -->
+            <ScrollView>
+                <StackLayout class="p-6">
+                    <!-- Stock des médicaments -->
+                    <medicationStock:medication-stock />
+
+                    <!-- Traitements en cours -->
+                    <StackLayout class="bg-white rounded-2xl shadow-sm p-6 mb-4">
+                        <Label text="Traitements en cours" class="text-xl font-bold text-gray-900 mb-4" />
+                        <GridLayout rows="auto, auto, auto" columns="auto, *, auto" class="mb-4">
+                            <Label row="0" col="0" text="💊" class="text-xl mr-3" />
+                            <StackLayout row="0" col="1">
+                                <Label text="Paracétamol" class="text-base text-gray-800" />
+                                <Label text="1000mg - 3x par jour" class="text-sm text-gray-500" />
+                            </StackLayout>
+                            <Label row="0" col="2" text="7j" class="text-sm text-blue-600" />
+                            
+                            <Label row="1" col="0" text="💊" class="text-xl mr-3" />
+                            <StackLayout row="1" col="1">
+                                <Label text="Ibuprofène" class="text-base text-gray-800" />
+                                <Label text="400mg - 2x par jour" class="text-sm text-gray-500" />
+                            </StackLayout>
+                            <Label row="1" col="2" text="5j" class="text-sm text-blue-600" />
+                        </GridLayout>
+                    </StackLayout>
+
+                    <!-- Rappels -->
+                    <StackLayout class="bg-white rounded-2xl shadow-sm p-6">
+                        <Label text="Rappels" class="text-xl font-bold text-gray-900 mb-4" />
+                        <GridLayout rows="auto, auto" columns="auto, *" class="mb-4">
+                            <Label row="0" col="0" text="⏰" class="text-xl mr-3" />
+                            <StackLayout row="0" col="1">
+                                <Label text="12:00" class="text-base font-medium text-gray-800" />
+                                <Label text="Paracétamol - 1 comprimé" class="text-sm text-gray-500" />
+                            </StackLayout>
+                            
+                            <Label row="1" col="0" text="⏰" class="text-xl mr-3" />
+                            <StackLayout row="1" col="1">
+                                <Label text="18:00" class="text-base font-medium text-gray-800" />
+                                <Label text="Ibuprofène - 1 comprimé" class="text-sm text-gray-500" />
+                            </StackLayout>
+                        </GridLayout>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+        <bottomNav:bottom-nav row="1" />
+    </GridLayout>
+</Page>

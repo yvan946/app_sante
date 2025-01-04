@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" 
+      xmlns:bottomNav="~/components/bottom-nav">
+    <GridLayout rows="*, auto">
+        <StackLayout row="0" class="bg-gray-50">
+            <!-- En-tête -->
+            <StackLayout class="p-6 bg-white border-b border-gray-200">
+                <Label text="🤝 Sponsors" class="text-3xl font-bold text-gray-900 mb-2" />
+                <Label text="Nos partenaires et soutiens" class="text-lg text-gray-600" />
+            </StackLayout>
+
+            <!-- Contenu -->
+            <ScrollView>
+                <StackLayout class="p-6">
+                    <!-- Catégories -->
+                    <GridLayout rows="auto, auto" columns="*, *" class="mb-4">
+                        <StackLayout col="0" class="bg-white rounded-xl shadow-sm p-4 m-1">
+                            <Label text="👱‍♀️" class="text-2xl text-center mb-2" />
+                            <Label text="Perruques" class="text-center text-gray-800" />
+                        </StackLayout>
+                        <StackLayout col="1" class="bg-white rounded-xl shadow-sm p-4 m-1">
+                            <Label text="🧴" class="text-2xl text-center mb-2" />
+                            <Label text="Soins" class="text-center text-gray-800" />
+                        </StackLayout>
+                        <StackLayout row="1" col="0" class="bg-white rounded-xl shadow-sm p-4 m-1">
+                            <Label text="👕" class="text-2xl text-center mb-2" />
+                            <Label text="Vêtements" class="text-center text-gray-800" />
+                        </StackLayout>
+                        <StackLayout row="1" col="1" class="bg-white rounded-xl shadow-sm p-4 m-1">
+                            <Label text="🏥" class="text-2xl text-center mb-2" />
+                            <Label text="Cliniques" class="text-center text-gray-800" />
+                        </StackLayout>
+                    </GridLayout>
+
+                    <!-- Liste des sponsors -->
+                    <StackLayout class="bg-white rounded-2xl shadow-sm p-6">
+                        <Label text="Nos partenaires" class="text-xl font-bold text-gray-900 mb-4" />
+                        <GridLayout rows="auto, auto, auto" columns="auto, *" class="mb-4">
+                            <Label row="0" col="0" text="👱‍♀️" class="text-xl mr-3" />
+                            <StackLayout row="0" col="1" class="mb-4">
+                                <Label text="Elite Hair" class="text-base font-medium text-gray-800" />
+                                <Label text="Perruques naturelles sur mesure" class="text-sm text-gray-500" />
+                            </StackLayout>
+                            
+                            <Label row="1" col="0" text="🧴" class="text-xl mr-3" />
+                            <StackLayout row="1" col="1" class="mb-4">
+                                <Label text="BeautyCare" class="text-base font-medium text-gray-800" />
+                                <Label text="Produits de soins spécialisés" class="text-sm text-gray-500" />
+                            </StackLayout>
+
+                            <Label row="2" col="0" text="👕" class="text-xl mr-3" />
+                            <StackLayout row="2" col="1">
+                                <Label text="ComfortWear" class="text-base font-medium text-gray-800" />
+                                <Label text="Vêtements adaptés post-chirurgie" class="text-sm text-gray-500" />
+                            </StackLayout>
+                        </GridLayout>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+        <bottomNav:bottom-nav row="1" />
+    </GridLayout>
+</Page>

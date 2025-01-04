@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" 
+      xmlns:bottomNav="~/components/bottom-nav"
+      navigatingTo="onNavigatingTo">
+    <GridLayout rows="*, auto">
+        <StackLayout row="0" class="bg-gray-50">
+            <!-- En-tête -->
+            <StackLayout class="p-6 bg-white border-b border-gray-200">
+                <Label text="👋 Bienvenue" class="text-3xl font-bold text-gray-900 mb-2" />
+                <Label text="Votre espace personnel" class="text-lg text-gray-600" />
+            </StackLayout>
+
+            <!-- Contenu -->
+            <ScrollView>
+                <StackLayout class="p-6">
+                    <!-- Carte Statistiques -->
+                    <GridLayout rows="auto" columns="*, *" class="bg-white rounded-2xl shadow-sm p-6 mb-4">
+                        <StackLayout col="0" class="text-center">
+                            <Label text="12" class="text-2xl font-bold text-blue-600 mb-1" />
+                            <Label text="Rendez-vous" class="text-sm text-gray-600" />
+                        </StackLayout>
+                        <StackLayout col="1" class="text-center">
+                            <Label text="5" class="text-2xl font-bold text-green-600 mb-1" />
+                            <Label text="Documents" class="text-sm text-gray-600" />
+                        </StackLayout>
+                    </GridLayout>
+
+                    <!-- Carte Activité Récente -->
+                    <StackLayout class="bg-white rounded-2xl shadow-sm p-6">
+                        <Label text="Activité récente" class="text-xl font-bold text-gray-900 mb-4" />
+                        <GridLayout rows="auto, auto, auto" columns="auto, *" class="mb-4">
+                            <Label row="0" col="0" text="📅" class="text-xl mr-3" />
+                            <Label row="0" col="1" text="Nouveau rendez-vous ajouté" class="text-base text-gray-800" />
+                            
+                            <Label row="1" col="0" text="📄" class="text-xl mr-3" />
+                            <Label row="1" col="1" text="Document partagé" class="text-base text-gray-800" />
+                            
+                            <Label row="2" col="0" text="👤" class="text-xl mr-3" />
+                            <Label row="2" col="1" text="Nouveau contact ajouté" class="text-base text-gray-800" />
+                        </GridLayout>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+        <bottomNav:bottom-nav row="1" />
+    </GridLayout>
+</Page>

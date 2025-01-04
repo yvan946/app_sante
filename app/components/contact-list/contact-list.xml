@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView items="{{ contacts }}" class="list-group">
+    <ListView.itemTemplate>
+        <GridLayout columns="*, auto" class="list-group-item p-4 border-b">
+            <StackLayout col="0">
+                <Label text="{{ name }}" class="contact-name font-bold text-lg" />
+                <Label text="{{ phone }}" class="contact-info" />
+                <Label text="{{ email }}" class="contact-info" />
+                <Label text="{{ address }}" class="contact-info" textWrap="true" />
+            </StackLayout>
+            <Button col="1" text="📋" tap="{{ $parent.onCopyInfo }}" class="btn-copy" />
+        </GridLayout>
+    </ListView.itemTemplate>
+</ListView>

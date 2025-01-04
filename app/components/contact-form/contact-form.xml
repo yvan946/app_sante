@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StackLayout class="p-4 bg-white rounded-lg">
+    <TextField hint="Nom du professionnel" text="{{ name }}" class="input mb-2 p-4 border rounded" />
+    <TextField hint="Numéro de téléphone" text="{{ phone }}" keyboardType="phone" class="input mb-2 p-4 border rounded" />
+    <TextField hint="Adresse email" text="{{ email }}" keyboardType="email" class="input mb-2 p-4 border rounded" />
+    <TextView hint="Adresse postale" text="{{ address }}" class="input mb-4 p-4 border rounded" height="100" />
+    <Button text="Ajouter le contact" tap="{{ onSaveContact }}" class="btn btn-primary p-4 bg-blue-500 text-white rounded" />
+</StackLayout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-gray-50">
+    <GridLayout rows="2*, 3*">
+        <StackLayout row="0" class="p-8">
+            <Label text="{{ headerText }}" class="text-3xl font-bold text-center text-gray-900 mb-4" textWrap="true" />
+            <Label text="{{ messageText }}" class="text-lg text-center text-gray-600 mb-8" textWrap="true" />
+            
+            <!-- Points PIN -->
+            <FlexboxLayout justifyContent="center" class="mb-4">
+                <Label text="●" class="{{ getDotClass(0) }}" margin="0 4" />
+                <Label text="●" class="{{ getDotClass(1) }}" margin="0 4" />
+                <Label text="●" class="{{ getDotClass(2) }}" margin="0 4" />
+                <Label text="●" class="{{ getDotClass(3) }}" margin="0 4" />
+            </FlexboxLayout>
+            
+            <Label text="{{ errorText }}" class="error-text text-center mt-4" textWrap="true" 
+                   visibility="{{ errorText ? 'visible' : 'collapsed' }}" />
+        </StackLayout>
+
+        <GridLayout row="1" rows="auto,auto,auto,auto" columns="*,*,*" class="mx-6 mb-12" verticalAlignment="bottom">
+            <Button text="1" tap="{{ onNumberTap }}" row="0" col="0" class="number-button" />
+            <Button text="2" tap="{{ onNumberTap }}" row="0" col="1" class="number-button" />
+            <Button text="3" tap="{{ onNumberTap }}" row="0" col="2" class="number-button" />
+
+            <Button text="4" tap="{{ onNumberTap }}" row="1" col="0" class="number-button" />
+            <Button text="5" tap="{{ onNumberTap }}" row="1" col="1" class="number-button" />
+            <Button text="6" tap="{{ onNumberTap }}" row="1" col="2" class="number-button" />
+
+            <Button text="7" tap="{{ onNumberTap }}" row="2" col="0" class="number-button" />
+            <Button text="8" tap="{{ onNumberTap }}" row="2" col="1" class="number-button" />
+            <Button text="9" tap="{{ onNumberTap }}" row="2" col="2" class="number-button" />
+
+            <Button text="Clear" tap="{{ onClear }}" row="3" col="0" class="action-button clear-button" />
+            <Button text="0" tap="{{ onNumberTap }}" row="3" col="1" class="number-button" />
+            <Button text="⌫" tap="{{ onDelete }}" row="3" col="2" class="action-button" />
+        </GridLayout>
+    </GridLayout>
+</Page>

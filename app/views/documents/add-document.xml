@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" 
+      navigatingTo="onNavigatingTo"
+      actionBarHidden="true">
+    <GridLayout class="bg-gray-100">
+        <!-- En-tête -->
+        <StackLayout class="safe-area">
+            <GridLayout rows="auto" columns="auto, *, auto" class="p-4 bg-white border-b border-gray-200">
+                <Label col="0" text="←" tap="{{ onCancel }}" class="text-3xl text-gray-600" />
+                <Label col="1" text="Nouveau document" class="text-xl font-bold text-center text-gray-900" />
+                <Button col="2" text="Enregistrer" tap="{{ onSave }}" 
+                        class="text-blue-500 font-medium" 
+                        isEnabled="{{ hasFile }}" />
+            </GridLayout>
+
+            <ScrollView>
+                <StackLayout class="p-6">
+                    <!-- Champs du formulaire -->
+                    <TextField hint="Titre du document" text="{{ title }}" 
+                              class="input p-4 bg-white border border-gray-200 rounded-lg mb-4" />
+                    
+                    <TextView hint="Description (optionnelle)" text="{{ description }}" 
+                             class="input p-4 bg-white border border-gray-200 rounded-lg mb-4" 
+                             height="100" />
+
+                    <!-- Options d'ajout de document -->
+                    <GridLayout rows="auto, auto" columns="*" class="mb-4">
+                        <Button row="0" text="📸 Prendre une photo" tap="{{ onTakePicture }}"
+                                class="mb-2 p-4 bg-blue-500 text-white rounded-lg" />
+                        
+                        <Button row="1" text="📱 Choisir depuis la galerie" tap="{{ onPickFromGallery }}"
+                                class="p-4 bg-blue-500 text-white rounded-lg" />
+                    </GridLayout>
+
+                    <!-- Aperçu du fichier sélectionné -->
+                    <StackLayout visibility="{{ hasFile ? 'visible' : 'collapsed' }}" 
+                                class="bg-white p-4 rounded-lg border border-gray-200">
+                        <GridLayout columns="*, auto">
+                            <Label col="0" text="{{ fileName }}" class="text-gray-700" />
+                            <Button col="1" text="×" tap="{{ onRemoveFile }}" 
+                                    class="text-red-500 font-bold text-xl w-8 h-8" />
+                        </GridLayout>
+                        <Image src="{{ filePath }}" class="mt-2 rounded"
+                               visibility="{{ fileType === 'image' ? 'visible' : 'collapsed' }}" />
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </GridLayout>
+</Page>

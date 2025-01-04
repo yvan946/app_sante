@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Form inputs styling */
+TextField, TextView {
+    color: #1F2937; /* Gray-800 */
+    placeholder-color: #9CA3AF; /* Gray-400 */
+    background-color: white;
+    border-width: 1;
+    border-color: #E5E7EB; /* Gray-200 */
+    border-radius: 8;
+    padding: 12;
+    margin-bottom: 12;
+}
+
+/* PIN Pad Styling */
+.pin-dot {
+    font-size: 24;
+    color: #D1D5DB;
+}
+
+.pin-dot.filled {
+    color: #1F2937;
+}
+
+.number-button {
+    font-size: 24;
+    color: #1F2937;
+    background-color: white;
+    border-radius: 999;
+    margin: 8;
+    height: 70;
+    width: 70;
+}
+
+.action-button {
+    font-size: 18;
+    color: #6B7280;
+    background-color: white;
+    border-radius: 999;
+    margin: 8;
+    height: 70;
+    width: 70;
+}
+
+.clear-button {
+    color: #EF4444;
+}
+
+.error-text {
+    color: #EF4444;
+}
+
+/* Form styling */
+.form-container {
+    background-color: #F9FAFB;
+    padding: 24;
+}
+
+/* ... rest of your existing styles ... */

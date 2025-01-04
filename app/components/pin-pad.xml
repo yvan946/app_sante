@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GridLayout rows="auto, auto, auto, auto" columns="*, *, *" class="m-4" xmlns="http://schemas.nativescript.org/tns.xsd">
+    <Label text="{{ displayPin }}" col="0" row="0" colSpan="3" class="text-3xl text-center p-4" />
+    
+    <Button text="1" tap="{{ onNumberTap }}" row="1" col="0" class="text-2xl p-4" />
+    <Button text="2" tap="{{ onNumberTap }}" row="1" col="1" class="text-2xl p-4" />
+    <Button text="3" tap="{{ onNumberTap }}" row="1" col="2" class="text-2xl p-4" />
+    
+    <Button text="4" tap="{{ onNumberTap }}" row="2" col="0" class="text-2xl p-4" />
+    <Button text="5" tap="{{ onNumberTap }}" row="2" col="1" class="text-2xl p-4" />
+    <Button text="6" tap="{{ onNumberTap }}" row="2" col="2" class="text-2xl p-4" />
+    
+    <Button text="7" tap="{{ onNumberTap }}" row="3" col="0" class="text-2xl p-4" />
+    <Button text="8" tap="{{ onNumberTap }}" row="3" col="1" class="text-2xl p-4" />
+    <Button text="9" tap="{{ onNumberTap }}" row="3" col="2" class="text-2xl p-4" />
+    
+    <Button text="Clear" tap="{{ onClear }}" row="4" col="0" class="text-xl p-4 text-red-500" />
+    <Button text="0" tap="{{ onNumberTap }}" row="4" col="1" class="text-2xl p-4" />
+    <Button text="⌫" tap="{{ onDelete }}" row="4" col="2" class="text-xl p-4" />
+</GridLayout>

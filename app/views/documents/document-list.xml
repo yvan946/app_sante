@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" 
+      navigatingTo="onNavigatingTo"
+      actionBarHidden="true">
+    <GridLayout rows="auto, *">
+        <!-- En-tête -->
+        <StackLayout row="0" class="bg-white border-b border-gray-200">
+            <GridLayout rows="auto, auto" columns="auto, *, auto" class="p-6 safe-area">
+                <Label col="0" text="←" tap="{{ onBackTap }}" class="text-3xl text-gray-600" />
+                <Label col="1" text="{{ title }}" class="text-2xl font-bold text-gray-900 text-center" />
+                <Button col="2" text="+" tap="{{ onAddDocument }}" 
+                        class="text-xl w-10 h-10 bg-blue-500 text-white rounded-full" />
+            </GridLayout>
+        </StackLayout>
+
+        <!-- Liste des documents -->
+        <ListView row="1" items="{{ documents }}" class="list-group bg-gray-50">
+            <ListView.itemTemplate>
+                <GridLayout columns="auto, *, auto" class="bg-white p-4 rounded-lg shadow-sm m-2">
+                    <Label col="0" text="{{ fileType === 'pdf' ? '📄' : '📷' }}" class="text-2xl mr-3" />
+                    <StackLayout col="1">
+                        <Label text="{{ title }}" class="text-base font-bold text-gray-900" />
+                        <Label text="{{ date, 'dd/MM/yyyy' }}" class="text-sm text-gray-600" />
+                        <Label text="{{ description }}" class="text-sm text-gray-600" 
+                               visibility="{{ description ? 'visible' : 'collapsed' }}" />
+                    </StackLayout>
+                    <Button col="2" text="×" tap="{{ $parent.onDeleteDocument }}" class="text-red-500 font-bold text-xl w-8 h-8" />
+                </GridLayout>
+            </ListView.itemTemplate>
+        </ListView>
+    </GridLayout>
+</Page>

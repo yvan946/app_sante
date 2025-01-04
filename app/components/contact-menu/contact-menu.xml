@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GridLayout rows="auto, auto" class="contact-menu">
+    <!-- Contact Header -->
+    <GridLayout row="0" columns="*, auto" tap="{{ onToggleMenu }}" class="p-4 border-b">
+        <Label col="0" text="{{ contact.name }}" class="contact-name font-bold text-lg" />
+        <Label col="1" text="{{ isExpanded ? '▼' : '▶' }}" class="text-gray-500" />
+    </GridLayout>
+
+    <!-- Menu Content -->
+    <StackLayout row="1" class="menu-content p-4 bg-gray-50" visibility="{{ isExpanded ? 'visible' : 'collapse' }}">
+        <!-- Phone -->
+        <GridLayout columns="*, auto" class="menu-item p-2" visibility="{{ contact.phone ? 'visible' : 'collapse' }}">
+            <StackLayout col="0">
+                <Label text="Téléphone" class="text-sm text-gray-500" />
+                <Label text="{{ contact.phone }}" class="contact-info text-base" />
+            </StackLayout>
+            <Button col="1" text="📋" tap="{{ onCopyPhone }}" class="copy-button" />
+        </GridLayout>
+
+        <!-- Email -->
+        <GridLayout columns="*, auto" class="menu-item p-2" visibility="{{ contact.email ? 'visible' : 'collapse' }}">
+            <StackLayout col="0">
+                <Label text="Email" class="text-sm text-gray-500" />
+                <Label text="{{ contact.email }}" class="contact-info text-base" />
+            </StackLayout>
+            <Button col="1" text="📋" tap="{{ onCopyEmail }}" class="copy-button" />
+        </GridLayout>
+
+        <!-- Address -->
+        <GridLayout columns="*, auto" class="menu-item p-2" visibility="{{ contact.address ? 'visible' : 'collapse' }}">
+            <StackLayout col="0">
+                <Label text="Adresse" class="text-sm text-gray-500" />
+                <Label text="{{ contact.address }}" class="contact-info text-base" textWrap="true" />
+            </StackLayout>
+            <Button col="1" text="📋" tap="{{ onCopyAddress }}" class="copy-button" />
+        </GridLayout>
+    </StackLayout>
+</GridLayout>

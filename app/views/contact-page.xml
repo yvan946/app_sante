@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" 
+      xmlns:bottomNav="~/components/bottom-nav"
+      xmlns:contactMenu="~/components/contact-menu"
+      navigatingTo="onNavigatingTo">
+    
+    <GridLayout rows="*, auto">
+        <!-- Contenu principal -->
+        <GridLayout row="0" class="page-content">
+            <!-- En-tête -->
+            <StackLayout class="bg-white border-b border-gray-200">
+                <GridLayout rows="auto, auto" class="p-6">
+                    <GridLayout row="0" columns="*, auto">
+                        <Label col="0" text="👥 Contacts" class="text-3xl font-bold text-gray-900" />
+                        <Button col="1" text="+" tap="{{ onAddContactTap }}" 
+                                class="text-xl w-10 h-10 bg-blue-500 text-white rounded-full"
+                                visibility="{{ !isFormVisible ? 'visible' : 'collapsed' }}" />
+                    </GridLayout>
+                    <Label row="1" text="Gérez vos contacts médicaux" class="text-lg text-gray-600" />
+                </GridLayout>
+            </StackLayout>
+
+            <!-- Liste des contacts -->
+            <ListView items="{{ contacts }}" class="list-group bg-gray-50" marginTop="110"
+                     visibility="{{ !isFormVisible ? 'visible' : 'collapsed' }}">
+                <ListView.itemTemplate>
+                    <contactMenu:contact-menu contact="{{ $value }}" />
+                </ListView.itemTemplate>
+            </ListView>
+
+            <!-- Formulaire d'ajout de contact -->
+            <ScrollView visibility="{{ isFormVisible ? 'visible' : 'collapsed' }}" marginTop="110">
+                <StackLayout class="form-container">
+                    <Label text="Nouveau contact" class="form-header" />
+                    
+                    <StackLayout class="form-group">
+                        <Label text="Nom du professionnel" class="form-label" />
+                        <TextField text="{{ name }}" hint="Nom du professionnel" />
+                    </StackLayout>
+
+                    <StackLayout class="form-group">
+                        <Label text="Numéro de téléphone" class="form-label" />
+                        <TextField text="{{ phone }}" hint="Numéro de téléphone" keyboardType="phone" />
+                    </StackLayout>
+
+                    <StackLayout class="form-group">
+                        <Label text="Adresse email" class="form-label" />
+                        <TextField text="{{ email }}" hint="Adresse email" keyboardType="email" />
+                    </StackLayout>
+
+                    <StackLayout class="form-group">
+                        <Label text="Adresse postale" class="form-label" />
+                        <TextView text="{{ address }}" hint="Adresse postale" height="100" />
+                    </StackLayout>
+
+                    <GridLayout columns="*, *" class="form-buttons">
+                        <Button col="0" text="Annuler" tap="{{ onCancelTap }}" class="btn-cancel m-1" />
+                        <Button col="1" text="Enregistrer" tap="{{ onSaveContact }}" class="btn-save m-1" />
+                    </GridLayout>
+                </StackLayout>
+            </ScrollView>
+        </GridLayout>
+        
+        <!-- Navigation du bas -->
+        <bottomNav:bottom-nav row="1" />
+    </GridLayout>
+</Page>

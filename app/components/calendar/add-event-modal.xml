@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GridLayout class="modal p-4 bg-white rounded-lg">
+    <StackLayout>
+        <Label text="Nouvel événement" class="text-xl font-bold mb-4" />
+
+        <!-- Type d'événement -->
+        <SegmentedBar selectedIndex="{{ eventType === 'appointment' ? 0 : eventType === 'symptom' ? 1 : 2 }}" class="mb-4">
+            <SegmentedBar.items>
+                <SegmentedBarItem title="Rendez-vous" />
+                <SegmentedBarItem title="Symptôme" />
+                <SegmentedBarItem title="Rappel" />
+            </SegmentedBar.items>
+        </SegmentedBar>
+
+        <!-- Champs communs -->
+        <TextField hint="Titre" text="{{ title }}" class="input mb-2 p-4 border rounded" />
+        <DatePicker date="{{ date }}" class="mb-2" />
+        <TimePicker time="{{ time }}" class="mb-2" visibility="{{ !isSymptom ? 'visible' : 'collapsed' }}" />
+        <TextView hint="Description" text="{{ description }}" class="input mb-4 p-4 border rounded" height="80" />
+
+        <!-- Champs spécifiques aux rendez-vous -->
+        <StackLayout visibility="{{ isAppointment ? 'visible' : 'collapsed' }}">
+            <TextField hint="Lieu" text="{{ location }}" class="input mb-2 p-4 border rounded" />
+            <TextField hint="Docteur" text="{{ doctor }}" class="input mb-2 p-4 border rounded" />
+        </StackLayout>
+
+        <!-- Champs spécifiques aux symptômes -->
+        <StackLayout visibility="{{ isSymptom ? 'visible' : 'collapsed' }}">
+            <Label text="Intensité" class="text-sm text-gray-600" />
+            <Slider value="{{ severity }}" minValue="1" maxValue="5" class="mb-2" />
+            <TextField hint="Durée" text="{{ duration }}" class="input mb-2 p-4 border rounded" />
+        </StackLayout>
+
+        <!-- Boutons -->
+        <GridLayout columns="*, *" class="mt-4">
+            <Button col="0" text="Annuler" tap="{{ onCancel }}" class="m-1 p-4 bg-gray-500 text-white rounded" />
+            <Button col="1" text="Enregistrer" tap="{{ onSave }}" class="m-1 p-4 bg-blue-500 text-white rounded" />
+        </GridLayout>
+    </StackLayout>
+</GridLayout>
