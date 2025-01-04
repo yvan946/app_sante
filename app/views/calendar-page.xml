@@ -48,7 +48,7 @@
                                                visibility="{{ description ? 'visible' : 'collapsed' }}"
                                                textWrap="true" />
                                     </StackLayout>
-                                    <Button col="2" text="×" tap="{{ $parents['ListView'].onDeleteEvent }}" 
+                                    <Button col="2" text="×" tap="{{ $parent.onDeleteEvent }}" 
                                             class="text-red-500 font-bold text-xl w-8 h-8" />
                                 </GridLayout>
                             </Repeater.itemTemplate>
